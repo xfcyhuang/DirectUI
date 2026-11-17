@@ -1,0 +1,7 @@
+/build/
+/out/
+/.cache/
+*.pcm
+*.obj
+*.exe
+compile_commands.json
