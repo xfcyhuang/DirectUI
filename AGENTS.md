@@ -10,6 +10,10 @@
 
 本工程 C++ 代码规范以 [`../cpp26.md`](../cpp26.md) 为唯一来源,写、改、审、重构任何 C++ 代码前必读并遵循;本文件不摘录、不复制其内容。
 
+## 宿主窗口约定
+
+demo 与一切测试/示例程序的基础窗口一律直接使用 Win32API(`RegisterClassExW`/`CreateWindowExW`/自建 `WndProc`/`PeekMessage` 泵),不引入任何窗口抽象或第三方窗口库;库本体(DirectUI.core/DirectUI.platform)不创建窗口(ADR-0004)。
+
 ## Agent skills
 
 ### Issue tracker
