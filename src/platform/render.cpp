@@ -95,15 +95,15 @@ auto create_device() -> std::expected<Device, Error> {
   return Device{uint8_id};
 }
 
-auto create_swap_chain(Device const& dev, Window const& win) -> std::expected<SwapChain, Error> {
+auto create_swap_chain(Device const& dev, std::uintptr_t uint8_hwnd) -> std::expected<SwapChain, Error> {
   auto& deq_dev = device_registry();
   if (dev.uint8_id >= deq_dev.size()) {
     return std::unexpected{Error{kErrInvalidId, "create_swap_chain: invalid device"}};
   }
   auto& dev_impl = deq_dev[dev.uint8_id];
-  auto* ptr_hwnd = static_cast<HWND>(native_handle(win));
+  auto* ptr_hwnd = reinterpret_cast<HWND>(uint8_hwnd);
   if (ptr_hwnd == nullptr) {
-    return std::unexpected{Error{kErrInvalidId, "create_swap_chain: invalid window"}};
+    return std::unexpected{Error{kErrInvalidId, "create_swap_chain: invalid host window"}};
   }
   auto* ptr_factory = static_cast<IDXGIFactory2*>(nullptr);
   auto int4_hr = CreateDXGIFactory1(__uuidof(IDXGIFactory2), reinterpret_cast<void**>(&ptr_factory));

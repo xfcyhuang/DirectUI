@@ -9,12 +9,12 @@ module;
 #include <deque>
 #include <expected>
 #include <format>
-#include <functional>
 #include <optional>
 #include <print>
 #include <string>
 #include <type_traits>
 #include <utility>
+#include <variant>
 
 export module std;
 
@@ -38,7 +38,6 @@ using std::uintptr_t;
 using std::deque;
 using std::expected;
 using std::unexpected;
-using std::function;
 using std::optional;
 using std::nullopt;
 using std::nullopt_t;
@@ -53,6 +52,12 @@ using std::move;
 using std::forward;
 using std::declval;
 using std::is_same_v;
+using std::remove_cvref_t;
+using std::variant;
+using std::holds_alternative;
+using std::get;
+using std::get_if;
+using std::visit;
 namespace chrono {
 using std::chrono::steady_clock;
 using std::chrono::duration_cast;

@@ -1,9 +1,16 @@
 add_executable(dui_event_test event_test.cpp)
-target_link_libraries(dui_event_test PRIVATE directui)
+target_link_libraries(dui_event_test PRIVATE dui_core)
 target_include_directories(dui_event_test PRIVATE ${CMAKE_SOURCE_DIR}/../liboost)
 target_compile_options(dui_event_test PRIVATE -Wno-c2y-extensions)
 
 add_test(NAME dui_event_test COMMAND dui_event_test)
+
+add_executable(dui_input_event_test input_event_test.cpp)
+target_link_libraries(dui_input_event_test PRIVATE dui_core)
+target_include_directories(dui_input_event_test PRIVATE ${CMAKE_SOURCE_DIR}/../liboost)
+target_compile_options(dui_input_event_test PRIVATE -Wno-c2y-extensions)
+
+add_test(NAME dui_input_event_test COMMAND dui_input_event_test)
 
 add_executable(dui_native_handle_test native_handle_test.cpp)
 target_link_libraries(dui_native_handle_test PRIVATE directui)
