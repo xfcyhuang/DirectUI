@@ -2,6 +2,8 @@ module;
 
 #include <array>
 #include <charconv>
+#include <chrono>
+#include <cmath>
 #include <cstddef>
 #include <cstdint>
 #include <deque>
@@ -11,6 +13,7 @@ module;
 #include <optional>
 #include <print>
 #include <string>
+#include <type_traits>
 #include <utility>
 
 export module std;
@@ -48,6 +51,16 @@ using std::print;
 using std::println;
 using std::move;
 using std::forward;
+using std::declval;
+using std::is_same_v;
+namespace chrono {
+using std::chrono::steady_clock;
+using std::chrono::duration_cast;
+using std::chrono::milliseconds;
+using std::chrono::duration;
+using std::chrono::operator-;
+}
+using std::fmod;
 using std::operator+;
 using std::operator-;
 using std::operator==;

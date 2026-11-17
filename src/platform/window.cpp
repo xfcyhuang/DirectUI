@@ -102,12 +102,24 @@ auto create_window(WindowDesc const& desc, EventReceiver fn_on_event) -> std::ex
   return Window{uint8_id};
 }
 
-auto run_message_loop() -> void {
+auto pump_events() -> bool {
   auto msg = MSG{};
-  while (GetMessageW(&msg, nullptr, 0, 0) > 0) {
+  while (PeekMessageW(&msg, nullptr, 0, 0, PM_REMOVE)) {
+    if (msg.message == WM_QUIT) {
+      return false;
+    }
     TranslateMessage(&msg);
     DispatchMessageW(&msg);
   }
+  return true;
+}
+
+auto native_handle(Window const& win) -> void* {
+  auto& deq = impl_registry();
+  if (win.uint8_id >= deq.size()) {
+    return nullptr;
+  }
+  return deq[win.uint8_id].hwnd;
 }
 
 auto destroy_window(Window& win) -> void {
