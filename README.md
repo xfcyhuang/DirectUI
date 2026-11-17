@@ -12,8 +12,14 @@ A Direct3D 11-based user interface library for Windows: widgets drawn by a pure,
 
 ## 构建 / Build
 
-CMake + Clang 23(llvm-mingw),C++26(`import std;`),构建脚本随阶段 0 落地。
-CMake + Clang 23 (llvm-mingw), C++26 (`import std;`). Build scripts land with Phase 0.
+CMake + Clang 23(llvm-mingw),C++26(`import std;`),base(Release)与 asan(Address+UBSan)双编排。
+CMake + Clang 23 (llvm-mingw), C++26 (`import std;`), with base (Release) and asan (Address+UBSan) presets.
+
+```sh
+cmake --preset base && cmake --build --preset base
+ctest --preset base
+./build/base/demo/dui_demo.exe
+```
 
 ## 文档 / Docs
 
